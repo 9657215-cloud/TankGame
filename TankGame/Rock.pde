@@ -4,6 +4,8 @@ class Rock {
   //PImage iTankW;
   char idir;
   
+  PImage obs1;
+  
   // Constructor
   Rock(float x, float y, float w, float h, float speed, float health) {
    this.x = x;
@@ -13,16 +15,20 @@ this.h = h;
    this.speed= speed;
    this.health = health;
     idir = 'w';
+    obs1 = loadImage("rock1.png");
   }
 
   void display() {
    fill(128);
-   rectMode(CENTER);
-   rect(x,y,w,h);
+   imageMode(CENTER);
+   image(obs1,x,y);
   }
 
 
 void move() {
   x = x + speed;
+  if(x>width) {
+    x = 0;
+  }
     }
   }

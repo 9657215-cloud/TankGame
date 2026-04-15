@@ -1,16 +1,17 @@
 // 1 April 2026 | TankGame by Hailey Price
 Tank t1;
-Rock o1;
+ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+ArrayList<Rock> rocks = new ArrayList<Rock>();
 PImage bg;
-int x,y,diam,speed;
+int score;
 
 
 void setup() {
   size(500, 500);
+  score = 0;
     bg = loadImage("tankbg.png");
   t1 = new Tank();
-  o1 = new Rock(400,100,100,50,5,100);
-
+ rocks.add(new Rock(200,200,100,100,100,int(random(1,10))));
 }
 
 
@@ -18,9 +19,23 @@ void draw() {
   background(127);
   imageMode(CORNER);
   image(bg,0,0);
-  t1.display();
-  o1.display();
+  for (int i = 0; i < rocks.size(); i++) {
+  Rock p = rocks.get(i);
+  p.display();
+  p.move();
+}
   
+  
+  
+  
+  for (int i = 0; i < projectiles.size(); i++) {
+  Projectile p = projectiles.get(i);
+  p.display();
+  p.move();
+}
+  t1.display();
+
+  scorePanel();
 }
 
 void keyPressed() {
@@ -34,4 +49,22 @@ void keyPressed() {
   t1.move('d');
   }
   
+}
+
+void mousePressed() {
+  projectiles.add(new Projectile(t1.x,t1.y,4,10));
+}
+
+
+
+
+void scorePanel() {
+  fill(127,200);
+  rectMode(CENTER);
+  noStroke();
+  rect(width/2,15,width,30);
+  fill(255);
+  textSize(30);
+  textAlign(CENTER);
+  text("Score:" + score,width/2,25);
 }
