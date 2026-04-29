@@ -1,14 +1,14 @@
 class Projectile {
-  float x, y;
+  float x, y, w, h;
   float vx, vy;
-  float w = 10;
-  float h = 10;
 
   Projectile(float x, float y, float vx, float vy) {
     this.x = x;
     this.y = y;
     this.vx = vx;
     this.vy = vy;
+    this.w = 10;
+    this.h = 10;
   }
 
   void display() {
@@ -23,7 +23,7 @@ class Projectile {
   }
 
   boolean intersect(Rock r) {
-    return dist(x, y, r.x, r.y) < 40;
+    return dist(x, y, r.x, r.y) < (r.w/2 + w/2);
   }
 
   boolean reachedEdge() {

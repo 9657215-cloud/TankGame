@@ -1,10 +1,7 @@
 class Rock {
-  float x, y;
-  float w, h;
-  float speed;
-  float health;
+  float x, y, w, h, speed, health;
   char idir;
-  PImage img;
+  PImage obs1;
 
   Rock(float w, float h, float speed, float health) {
     this.w = w;
@@ -12,7 +9,6 @@ class Rock {
     this.speed = speed;
     this.health = health;
 
-    // Random spawn direction
     int side = int(random(4));
 
     if (side == 0) { // top
@@ -33,12 +29,12 @@ class Rock {
       y = random(height);
     }
 
-    img = loadImage("rock1.png");
+    obs1 = loadImage("rock1.png");
   }
 
   void display() {
     imageMode(CENTER);
-    image(img, x, y);
+    image(obs1, x, y, w, h);
   }
 
   void move() {
